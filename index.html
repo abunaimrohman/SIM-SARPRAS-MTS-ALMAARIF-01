@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portal SIM-Sarpras - MTs Almaarif 01 Singosari</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100 text-slate-800 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-[#1E3A5F] text-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+      <div>
+        <h1 class="text-lg font-bold tracking-wide">SIM-SARPRAS MTs ALMAARIF 01</h1>
+        <p class="text-xs text-slate-300">Digitalisasi Inventaris & Pelaporan Kerusakan</p>
+      </div>
+      <span class="text-xs bg-emerald-600 px-3 py-1 rounded-full font-medium w-fit">Versi Beta 26.1</span>
+    </div>
+  </header>
+
+  <!-- Navigasi Menu -->
+  <nav class="bg-white border-b border-slate-200 sticky top-0 z-10 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 flex overflow-x-auto gap-2 py-2.5">
+      <button onclick="bukaTab('bukuinduk', this)" class="tab-btn active px-4 py-2 rounded-lg text-sm font-semibold bg-[#1E3A5F] text-white whitespace-nowrap">
+        1. Data Buku Induk Aset
+      </button>
+      <button onclick="bukaTab('lapor', this)" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-100 whitespace-nowrap">
+        2. Lapor Kerusakan
+      </button>
+      <button onclick="bukaTab('monitor', this)" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-100 whitespace-nowrap">
+        3. Pantau Progres Perbaikan
+      </button>
+      <button onclick="bukaTab('inventaris', this)" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-100 whitespace-nowrap">
+        4. Input Inventaris Baru
+      </button>
+    </div>
+  </nav>
+
+  <!-- Konten Utama -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4">
+
+    <!-- Tab 1: Data Buku Induk Aset (Tampil Pertama) -->
+    <div id="tab-bukuinduk" class="tab-panel bg-white rounded-xl shadow border border-slate-200 overflow-hidden h-[80vh]">
+      <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQR7UD_PvIbsivqIaaFlczJ3wh3Vf64OpIJlzocdWkt82ADuuO0IoFYw3yBI43CyCJdP2-HREGc76cr/pubhtml?gid=50109147&single=true" class="w-full h-full border-0"></iframe>
+    </div>
+
+    <!-- Tab 2: Lapor Kerusakan -->
+    <div id="tab-lapor" class="tab-panel hidden bg-white rounded-xl shadow border border-slate-200 p-8 text-center max-w-2xl mx-auto mt-6">
+      <div class="w-14 h-14 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">!</div>
+      <h2 class="text-xl font-bold text-slate-800 mb-2">Form Laporan Kerusakan Sarpras</h2>
+      <p class="text-sm text-slate-600 mb-6">
+        Silakan buka formulir melalui tombol di bawah ini untuk melaporkan kerusakan fasilitas beserta unggah foto bukti.
+      </p>
+      <a href="https://forms.gle/cmtp7pJcP3oQeRVs5" target="_blank" rel="noopener noreferrer"
+         class="inline-flex items-center gap-2 bg-[#1E3A5F] hover:bg-[#162c49] text-white font-semibold px-6 py-3 rounded-lg shadow transition">
+        Buka Form Laporan Kerusakan ↗
+      </a>
+    </div>
+
+    <!-- Tab 3: Monitor Kerusakan -->
+    <div id="tab-monitor" class="tab-panel hidden bg-white rounded-xl shadow border border-slate-200 overflow-hidden h-[80vh]">
+      <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQR7UD_PvIbsivqIaaFlczJ3wh3Vf64OpIJlzocdWkt82ADuuO0IoFYw3yBI43CyCJdP2-HREGc76cr/pubhtml?gid=1090278240&single=true" class="w-full h-full border-0"></iframe>
+    </div>
+
+    <!-- Tab 4: Input Inventaris Baru -->
+    <div id="tab-inventaris" class="tab-panel hidden bg-white rounded-xl shadow border border-slate-200 p-8 text-center max-w-2xl mx-auto mt-6">
+      <div class="w-14 h-14 bg-blue-100 text-[#1E3A5F] rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">+</div>
+      <h2 class="text-xl font-bold text-slate-800 mb-2">Form Pendataan Inventaris Baru</h2>
+      <p class="text-sm text-slate-600 mb-6">
+        Digunakan oleh Bagian Sarpras dan PJ Ruang untuk mendata aset baru beserta foto barang ke dalam Buku Induk.
+      </p>
+      <a href="https://forms.gle/PG8ZHwQ2e347pZQe7" target="_blank" rel="noopener noreferrer"
+         class="inline-flex items-center gap-2 bg-[#1E3A5F] hover:bg-[#162c49] text-white font-semibold px-6 py-3 rounded-lg shadow transition">
+        Buka Form Pendataan Inventaris ↗
+      </a>
+    </div>
+
+  </main>
+
+  <script>
+    function bukaTab(namaTab, tombol) {
+      document.querySelectorAll('.tab-panel').forEach(el => el.classList.add('hidden'));
+      document.getElementById('tab-' + namaTab).classList.remove('hidden');
+
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-[#1E3A5F]', 'text-white');
+        btn.classList.add('text-slate-600', 'hover:bg-slate-100');
+      });
+      tombol.classList.remove('text-slate-600', 'hover:bg-slate-100');
+      tombol.classList.add('bg-[#1E3A5F]', 'text-white');
+    }
+  </script>
+</body>
+</html>
